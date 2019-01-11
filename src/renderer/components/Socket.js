@@ -2,18 +2,23 @@ import io from 'socket.io-client/dist/socket.io.js'
 import { resolve } from 'dns';
 import config from '../../../Config.json'
 import store from '../store'
+// let socket = {};
 var socket = io('http://47.107.155.139:8360')
-export function getConnection() {
-  socket.on('opend', (data) => {
-    console.log(data)
-    const socketId = socket.id
-    console.log(socketId)
-  })
+export function Connect() {
+  // const socketconn = io('http://47.107.155.139:8360')
+  // socket.on('opend', (data) => {
+  //   console.log(data)
+  //   const socketId = socket.id
+  //   console.log(socketId)
+  // })
   // store.dispatch('socket/handleConnect',{socket})
+  // socket = socketconn  // 下面的方法有得用
   return socket
 }
 // 接收验证信息
 export function getVerify() {
+  // console.log('aaa')
+  // console.log(socket)
   socket.on('getVerify', (data) => {
     console.log(data)
     store.dispatch('socket/handleGetMessage', { data })
@@ -96,7 +101,7 @@ function addGroup(data) {
   store.dispatch('user/handleAddGroup', { group: [group] })
 }
 export default {
-  getConnection,
+  Connect,
   getVerify,
   // addFriendResult,
   getVerifyResult,

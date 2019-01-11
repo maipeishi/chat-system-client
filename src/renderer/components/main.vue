@@ -85,7 +85,7 @@ import ChatWindow from './ChatWindow.vue'
 import ChatWindowSider from './ChatWindowSider.vue'
 import Head from './Header.vue'
 import dataHelper from "./DataHelper.js";
-import { getConnection, getVerify, getVerifyResult, addGroupResult, inviteResult, chat, removeGroup } from './Socket.js'
+import { Connect, getVerify, getVerifyResult, addGroupResult, inviteResult, chat, removeGroup } from './Socket.js'
 export default {
   name: 'main-page',
   components: {
@@ -151,9 +151,8 @@ export default {
         var token = { token: '' }
         this.handleLogin({ username, email, id, avatar, token });
 
-        // this.$router.push({
-        //   name: "main-page",
-        // });
+        
+        this.socket.emit('login',{email:this.email})
       }
       else {
         this.$router.push({
@@ -223,7 +222,7 @@ export default {
     }
   },
   mounted() {
-    this.socket = getConnection()
+    this.socket = Connect()
     // this.$store.dispatch('socket/handleConnect',{socket:this.socket})
   },
 };

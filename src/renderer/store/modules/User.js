@@ -1,5 +1,5 @@
 const state = {
-  email: '1641084984@qq.com',
+  email: '',
   username: '',
   userid: '',
   avatar: '',

@@ -1,5 +1,5 @@
 const state = {
-  socket: '',
+  // socket: '',
   verifyMessage: [],
   selectedGroupMembers: [],
   chatMessage: [],
