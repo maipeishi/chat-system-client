@@ -141,18 +141,21 @@ export default {
       // console.log(window.innerHeight)
       this.clientHeinght = window.innerHeight - 100
     })
+    if(this.$store.state.user.email) {
+      return
+    }
     dataHelper.postData(this, "api/auth/getUser", {}, res => {
       console.log(res);
       if (res.user_email) {
-        var email = { email: res.user_email }
-        var id = { id: res.id }
-        var avatar = { avatar: res.avatar }
-        var username = { username: res.user_name }
-        var token = { token: '' }
+        const email = { email: res.user_email }
+        const id = { id: res.id }
+        const avatar = { avatar: res.avatar }
+        const username = { username: res.user_name }
+        const token = { token: '' }
         this.handleLogin({ username, email, id, avatar, token });
 
         
-        this.socket.emit('login',{email:this.email})
+        this.socket.emit('login',{email:email.email})
       }
       else {
         this.$router.push({
@@ -223,6 +226,9 @@ export default {
   },
   mounted() {
     this.socket = Connect()
+    if(this.email) {
+      this.socket.emit('login',{email:this.email})
+    }
     // this.$store.dispatch('socket/handleConnect',{socket:this.socket})
   },
 };

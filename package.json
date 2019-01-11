@@ -1,5 +1,5 @@
 {
-  "name": "chat-system",
+  "name": "chat-system-client",
   "version": "0.0.2",
   "author": "mai <1641084984@qq.com>",
   "description": "An electron-vue project",
@@ -62,6 +62,7 @@
     "prop-types": "^15.6.2",
     "react": "^16.6.3",
     "react-avatar": "^3.4.6",
+    "should": "^13.2.3",
     "socket.io": "^2.1.1",
     "socket.io-client": "^2.1.1",
     "vue": "^2.5.16",
