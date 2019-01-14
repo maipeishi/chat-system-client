@@ -3,7 +3,7 @@
     <Form :model="userInfo" :label-width="80">
       <FormItem label="邮箱">{{userInfo.email}}</FormItem>
       <FormItem label="昵称">
-        <Input v-model="username" id="userinfo_username"></Input>
+        <Input v-model="username" id="userinfo_username" :maxlength=20></Input>
       </FormItem>
       <FormItem label="头像">
         <div id="avatar_div">

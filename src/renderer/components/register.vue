@@ -62,8 +62,8 @@ export default {
           { required: true, message: "Please select gender", trigger: "blur" },
           {
             type: "string",
-            max: 255,
-            message: "Introduce no more than 255 words",
+            max: 20,
+            message: "password no more than 20 words",
             trigger: "blur"
           }
         ],
@@ -71,8 +71,8 @@ export default {
           { required: true, message: "Please select gender", trigger: "blur" },
           {
             type: "string",
-            max: 50,
-            message: "Introduce no less than 20 words",
+            max: 20,
+            message: "password no less than 20 words",
             trigger: "blur"
           }
         ],

@@ -1,8 +1,8 @@
 <template>
   <div id="box">
     <Form id="loginFrom" ref="formInline" :model="formInline" :rules="ruleInline">
-            <FormItem prop="user">
-              <Input type="text" v-model="formInline.email" placeholder="邮箱">
+            <FormItem prop="email">
+              <Input type="email" v-model="formInline.email" placeholder="邮箱">
                 <Icon type="ios-person-outline" slot="prepend"></Icon>
               </Input>
             </FormItem>
@@ -33,11 +33,12 @@ export default {
       },
       ruleInline: {
         email: [
-          { required: true, message: 'Please fill in the user name', trigger: 'blur' }
+          { required: true, message: 'Please fill in the email', trigger: 'blur' },
+          { type: "email", message: "Incorrect email format", trigger: "blur" }
         ],
         password: [
           { required: true, message: 'Please fill in the password.', trigger: 'blur' },
-          { type: 'string', min: 1, message: 'The password length cannot be less than 1 bits', trigger: 'blur' }
+          { type: 'string', min: 1, max: 20, message: 'The password length cannot be less than 1 bits and more than 20 bits', trigger: 'blur' }
         ]
       }
     }
@@ -49,10 +50,10 @@ export default {
     handleSubmit(name) {
       this.$refs[name].validate((valid) => {
         if (valid) {
-          this.$Message.success('Success!');
           dataHelper.postData(this,'api/auth/login', {email:this.formInline.email,password:this.formInline.password}, (result) => {
             console.log(result)
             if(result.id) {
+              this.$Message.success('Success!');
               var email = {email:result.user_email}
               var id = {id:result.id}
               var avatar = {avatar:result.avatar}

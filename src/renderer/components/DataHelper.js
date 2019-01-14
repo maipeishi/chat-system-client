@@ -6,13 +6,21 @@ const dataHelper = {
         .then(
             function(response){
                 var result = response.data.data
+                if(response.data.errmsg) {
+                    console.log(response.data.errmsg)
+                context.$Notice.error({
+                    title: '错误',
+                    desc: response.data.errmsg
+                });
+                return
+                }
                 success(result)
             },
             function(err){
                 console.log(err)
                 context.$Notice.error({
                     title: '错误',
-                    desc: '该邮箱已被注册，请重新输入邮箱。'
+                    desc: err
                 });
             }
         ).catch(function(Ex) {
