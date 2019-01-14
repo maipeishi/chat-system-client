@@ -233,6 +233,7 @@ export default {
       this.socket.emit('removeGroup', { group: this.Selected, fromUser: this.$store.state.user })
     },
     Logout() {
+      this.socket.emit('close')
       dataHelper.postData(this, 'api/auth/logout', { user_email: this.user_email }, (result) => {
         console.log('退出登录')
         this.$router.replace('/')

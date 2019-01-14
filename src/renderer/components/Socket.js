@@ -65,6 +65,7 @@ export function inviteResult() {
 export function chat() {
   socket.on('message',(data) => {
     // 存入vuex
+    console.log(data)
     store.dispatch('socket/handleSetChatMessage',{data})
     // if(data.sendObj.data[0].file) {
     //   // 读取json

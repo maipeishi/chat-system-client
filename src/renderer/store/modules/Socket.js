@@ -44,12 +44,17 @@ const mutations = {
     state.selectedGroupMembers.push(...data.data)
   },
   setChatMessage(state, data) {
-    console.log(data)
+    // console.log(data)
     const index = state.chatMessage.findIndex((value, index, arr) => value.id === data.sendObj.id)
-    if (index !== -1)
-      state.chatMessage[index].data.push(data.sendObj.data[0])
-    else
-      state.chatMessage.push(data.sendObj)
+    console.log(index)
+    if (index !== -1) {
+      // state.chatMessage[index].data = []
+      state.chatMessage[index].data.push(data.sendObj.data)
+    }
+    else {
+      state.chatMessage.push({id:data.sendObj.id,data:[data.sendObj.data]})
+      // state.chatMessage.push(data.sendObj)
+    }
   }
 };
 
